@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+<head>
+
+	<title>LaRecNet</title>
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<link href="css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+	<link href="css/index.css" media="screen" rel="stylesheet" type="text/css"/>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+			CommonHTML: { linebreaks: { automatic: true } },
+			"HTML-CSS": { linebreaks: { automatic: true } },
+				 SVG: { linebreaks: { automatic: true } }
+			});
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	
+</head>
+
+<body>
+
+<div class="menu-container noselect">
+	<div class="menu">
+		<table class="menu-table">
+			<tr>
+				<td>
+					<div class="logo">
+						<a href="javascript:void(0)">LaRecNet</a>
+					</div>
+				</td>
+				<td>
+					<div class="menu-items">
+						<a class="menu-highlight">Overview</a>
+						<a >GitHub</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="content-container">
+	<div class="content">
+		<table class="content-table">
+		      <h1 style="text-align:center; margin-top:60px; font-weight: bold; font-size: 35px;">
+				Fisheye Images Rectification from Deep Straight Lines</h1>
+	        
+				<p style="text-align:center; margin-bottom:15px; margin-top:20px; font-size: 18px;">
+					<a href="http://captain.whu.edu.cn/wangfudong_En.html" style="color: #0088CC">Zhu-Cun Xue<script type="math/tex">^1</script></a><a style="color: #0088CC">,</a>
+					<a href="http://captain.whu.edu.cn/xia_En.html" style="color: #0088CC">Nan Xue<script type="math/tex">^{1*}</script></a><a style="color: #0088CC">,</a>
+					<a href="https://cherubicxn.github.io/" style="color: #0088CC">Gui-Song Xia<script type="math/tex">^1</script></a><a style="color: #0088CC">,</a>,<br>
+					<a target="_blank" href="http://captain.whu.edu.cn/" style="color: #0088CC; font-style: italic"><script type="math/tex">^1</script>LIESMARS CAPTAIN, Wuhan University, Wuhan, China</a> 
+				</p>	 
+
+			
+			<tr>
+				<td colspan="2">
+					<h2 class="add-top-margin">Brief overview</h2>
+					<hr>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<p class="text" style="text-align:justify;">
+					Correcting fisheye distortion is a challenging problem with wide applications, 
+					which has been widely researched by utilizing
+					implicit geometric constraints of fisheye images to rectify distortion in self-calibration. 
+					This paper presents a novel line-aware rectification network (LaRecNet) to address the problem of fisheye imagesrectification based on the classical observation -- 
+					the straight lines in 3D space should be still straight in image planes. 
+					Specifically, the proposed LaRecNet contains three sequential modules to 
+					(1) learn the distorted straight lines from fisheye images; 
+					(2) estimate thedistortion parameters from the learned heatmaps and the image appearance; 
+					(3) rectify the input images via a proposed differentiablerectification layer.
+					To better train and evaluate the proposed model, we create a synthetic line-rich fisheye (SLF) dataset that containsdistortion parameters 
+					and well-annotated distorted straight lines of fisheye images. 
+					The proposed method enables us to simultaneously calibrate the geometric distortion parameters and rectify fisheye images.
+					Extensive experiments demonstrates that our model achievesthe state-of-the-art performance in both aspects of geometric correctness and image quality. 
+					Quantitatively, our proposed methodachieves state-of-the-art performance on several evaluation metrics. 
+					In particular, the average reprojection error between the correctedimages by LaRecNet and the ground-truth images is 0.33 pixels on the SLF dataset, 
+					and the images rectified by LaRecNet achieve thehighest peak signal-to-noise ratio (PSNR) and structure similarity index (SSIM).
+					</p>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+				<div class="center">
+				<video width="1204" poster="video/LaRecNet.mp4" autoplay="autoplay" preload="none" controls="controls" muted><source src="video/LaRecNet.mp4" /></video>
+				</td>
+				</div>
+			</tr>
+			
+			<tr>
+			    <td colspan="2">
+					<h2 class="add-top-margin">Dataset</h2>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="left-align">
+					<p style="text-align:justify">
+						Thanks to the recently released wireframe dataset 
+						which has the labelings of straight line and the large-scale 3D scenes SUNCG
+						which provides diverse semantic 3D scenes, 
+						we create a new synthetic line-rich  fisheye (SLF) dataset based on the 2D wireframes and 3D surface models of man-made environ-ments 
+						for fisheye lens calibration and the image rectification.
+						The proposed SLF dataset has well-annotated 2D/3D line segments <script type="math/tex">L</script>
+						as well as the corresponding ground truth distortion parameters <script type="math/tex">K_{gt}</script>  for training and testing. 
+						The two subsets of SLF dataset, the distorted wireframe collection (<b>D-Wireframe</b>) 
+						from the wireframe dataset and the fisheye SUNCG collection (<b>Fish-SUNCG</b>) from the 3D model repository.
+						<li><b>D-Wireframe (<script type="math/tex">\text{SLF}_\text{wf}</script>) </b> </li>
+						For any normal image without distortion, we give a group of distortion parameters to convert it into fisheye effect.
+						<li><b>Fish-SUNCG (<script type="math/tex">\text{SLF}_\text{sun}</script>) </b> </li>
+						For any virtual 3d scene in Blender, we render fish eye images by controlling  imaging formation mode under different camera poses.
+					</p>
+					</div>
+				</td>
+				<td>
+				   <div class="left-right">
+					<p style="text-align:right"><img src="img/dataset.png" width="600"></p>	
+					</div>
+				</td>	
+			</tr>
+			
+			
+			<tr>
+				<td colspan="2">
+					<h2 class="add-top-margin">Campared with state of the arts</h2>
+					<hr>
+				</td>
+			</tr>
+			
+			<tr>
+			    <td colspan="2">
+				    <li><b>Results on Geometry Rectification</b> </li>
+					<p class="text" style="text-align:justify;">
+					Distortion line rectification results of various methods. 
+					From left to right are the input RGB fisheye images, the distorted lines detected infisheye images,
+					the rectified results by different method (Bukhari [1], AlemnFlores [2], Rong [3]),
+					our proposed method, and the ground truth.
+					</p>
+						
+				</td>
+			</tr>
+			
+		
+			<tr>
+			<td colspan="2"  >
+			<table  align="center"; cellpadding="0";>	
+			    <tr>	
+						<td><img src="img/00031591_fish.png" width="168" style="display:block" /></td>
+						<td><img src="img/00031591.png" width="168" style="display:block"  /></td>
+						<td><img src="img/00031591_buk.png" width="168" style="display:block"   /></td>
+						<td><img src="img/00031591_af.png" width="168" style="display:block"   /></td>
+						<td><img src="img/00031591_song.png" width="168" style="display:block"   /></td>
+						<td><img src="img/00031591_ours.png" width="168" style="display:block"  /></td>
+						<td><img src="img/00031591_gt.png" width="168" style="display:block"  /></td>
+				</tr>
+			    <tr>	
+						<td><img src="img/00033365_fish.png" width="168"style="display:block" /></td>
+						<td><img src="img/00033365.png" width="168" style="display:block" /></td>
+						<td><img src="img/00033365_buk.png" width="168" style="display:block" /></td>
+						<td><img src="img/00033365_af.png" width="168" style="display:block" /></td>
+						<td><img src="img/00033365_song.png" width="168"  style="display:block" /></td>
+						<td><img src="img/00033365_ours.png" width="168"  style="display:block" /></td>
+						<td><img src="img/00033365_gt.png" width="168"  style="display:block" /></td>
+				</tr>
+			    <tr>	
+						<td><img src="img/00077161_fish.png" width="168"  style="display:block" /></td>
+						<td><img src="img/00077161.png" width="168" style="display:block" /></td>
+						<td><img src="img/00077161_buk.png" width="168" style="display:block"  /></td>
+						<td><img src="img/00077161_af.png" width="168" style="display:block" /></td>
+						<td><img src="img/00077161_song.png" width="168" style="display:block" /></td>
+						<td><img src="img/00077161_ours.png" width="168" style="display:block" /></td>
+						<td><img src="img/00077161_gt.png" width="168" style="display:block" /></td>
+				</tr>
+				<tr>	
+						<td><img src="img/00192093_fish.png" width="168" style="display:block" /></td>
+						<td><img src="img/00192093.png" width="168" style="display:block" /></td>
+						<td><img src="img/00192093_buk.png" width="168" style="display:block" /></td>
+						<td><img src="img/00192093_af.png" width="168" style="display:block" /></td>
+						<td><img src="img/00192093_song.png" width="168"  style="display:block" /></td>
+						<td><img src="img/00192093_ours.png" width="168" style="display:block" /></td>
+						<td><img src="img/00192093_0_gt.png" width="168" style="display:block" /></td>
+				</tr>
+				<tr>	
+						<td><p class="text" style="text-align:center;">Fisheye </p></td>
+						<td><p class="text" style="text-align:center;">Distorted Lines</p></td>
+						<td><p class="text" style="text-align:center;">Bukhari [1]</p></td>
+						<td><p class="text" style="text-align:center;">AlemnFlores [2]</p></td>
+						<td><p class="text" style="text-align:center;">Rong [3]</p></td>
+						<td><p class="text" style="text-align:center;">Ours</p></td>
+						<td><p class="text" style="text-align:center;">GT</p></td>
+				</tr>				
+			</table>
+			</td></tr>
+
+	        <tr>
+			    <td colspan="2"  >
+				    <li><b>Results on Synthetic Dataset</b> </li>
+					<p class="text" style="text-align:left-align;">
+					 Qualitative comparison results of fisheye image rectification on <b>D-Wireframe</b> and <b>Fish-SUNCG</b>. 
+					 From left to right are the input fisheye images, rectification results ofthree state-of-the-art methods 
+					 (Bukhari [1], AlemnFlores [2], Rong [3]), our results as well as the ground truth.
+					</p>
+				</td>
+			</tr>
+			<tr><td colspan="2" >
+			<table  align="center"; cellpadding="0";>	
+				<tr>	
+						<td><img src="img/00031810.png" width="196" style="display:block" /></td>
+						<td><img src="img/00031810_buk.png" width="196" style="display:block" /></td>
+						<td><img src="img/00031810-af2.png" width="196" style="display:block" /></td>
+						<td><img src="img/00031810_song2.png" width="196" style="display:block" /></td>
+						<td><img src="img/00031810_ours.png" width="196"  style="display:block" /></td>
+						<td><img src="img/00031810_gt.png" width="196"  style="display:block" /></td>
+				</tr>
+				
+				<tr>	
+						<td><img src="img/00036609.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00036609_buk.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00036609_af.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00036609_rong.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00036609_ours.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00036609_gt.png" width="196" hspace="0" style="display:block" /></td>
+				</tr>
+				
+				<tr>	
+						<td><img src="img/00061141.png" width="196" hspace="0"  style="display:block" /></td>
+						<td><img src="img/00061141_buk.png" width="196" hspace="0"  style="display:block" /></td>
+						<td><img src="img/00061141-af.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00061141_song2.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00061141_ours.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00061141_gt.png" width="196" hspace="0" style="display:block" /></td>
+				</tr>
+				
+				<tr>	
+						<td><img src="img/00336921.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00336921_buk.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00336921_af.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00336921_rong.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/00336921_ours.png" width="196" hspace="0" style="display:block"  /></td>
+						<td><img src="img/00336921_gt.png" width="196" hspace="0" style="display:block" /></td>
+				</tr>
+				
+				
+				<tr>	
+						<td><img src="img/6010.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6010_buk.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6010-af.png" width="196" hspace="0" style="display:block"  /></td>
+						<td><img src="img/6010_song.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6010_ours.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6010_gt.png" width="196" hspace="0" style="display:block" /></td>
+				</tr>
+				
+				<tr>	
+						<td><img src="img/6017.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6017_buk.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6017_af.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6017_rong.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6017_ours.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6017_gt.png" width="196" hspace="0" style="display:block" /></td>
+				</tr>
+				<tr>	
+						<td><img src="img/6128.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6128_buk.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6128-af.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6128_song.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6128_ours.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6128_gt.png" width="196" hspace="0" style="display:block" /></td>
+				</tr>
+				<tr>	
+						<td><img src="img/6205.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6205_buk.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6205_af.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6205_rong.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6205_ours.png" width="196" hspace="0" style="display:block" /></td>
+						<td><img src="img/6205_gt.png" width="196" hspace="0" style="display:block" /></td>
+				</tr>
+				<tr>	
+						<td><p class="text" style="text-align:center;">fisheye </p></td>
+						<td><p class="text" style="text-align:center;">Bukhari [1]</p></td>
+						<td><p class="text" style="text-align:center;">AlemnFlores [2]</p></td>
+						<td><p class="text" style="text-align:center;">Rong [3]</p></td>
+						<td><p class="text" style="text-align:center;">ours</p></td>
+						<td><p class="text" style="text-align:center;">gt</p></td>
+				</tr>			
+			</table></td></tr>
+			
+			
+			
+			
+			
+			
+			<tr>
+				<td colspan="2">
+					<h2 class="add-top-margin">More results</h2>
+					<hr>
+				</td>
+			</tr>
+			
+			<tr>
+			    <td colspan="2">
+				    <li><b>Results on D-Wireframe</b> </li>
+					<div class="left-align">
+							<img src="img/fish6.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec6.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/fish14.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec14.gif" width="300" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="left-align">
+							<img src="img/fish8.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec8.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/fish9.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec9.gif" width="300" />
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+			    <td colspan="2">
+				    <li><b>Results on Fish-SUNCG</b> </li>
+					<div class="left-align">
+							<img src="img/fish.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/fish4.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec4.gif" width="300" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="left-align">
+							<img src="img/fish1.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec1.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/fish2.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec2.gif" width="300" />
+					</div>
+				</td>
+			</tr>
+			
+				<tr>
+			    <td colspan="2">
+				    <li><b>Results on wild images</b> </li>
+					<div class="left-align">
+							<img src="img/fish15.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec15.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/real4.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/sys4.gif" width="300" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="left-align">
+							<img src="img/fish16.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/rec16.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/real5.gif" width="300" />
+					</div>
+					<div class="left-align">
+							<img src="img/sys5.gif" width="300" />
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<h2 class="add-top-margin">Code(coming soon)</h2>
+					<hr>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<div align="center"><img src="img/allnet.png" width="800" /></div>
+				</td>
+			</tr>
+			
+			
+
+	
+	<div class="footer">
+		<p class="block">&copy; 2020 by Zhu-Cun.Xue at CAPTAIN</p>
+	</div>
+
+	</table>
+</div>
+</body>
+</html>
