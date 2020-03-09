@@ -50,10 +50,10 @@
 				Fisheye Images Rectification from Deep Straight Lines</h1>
 	        
 				<p style="text-align:center; margin-bottom:15px; margin-top:20px; font-size: 18px;">
-					<a href="http://captain.whu.edu.cn/wangfudong_En.html" style="color: #0088CC">Zhu-Cun Xue<script type="math/tex">^1</script></a><a style="color: #0088CC">,</a>
-					<a href="http://captain.whu.edu.cn/xia_En.html" style="color: #0088CC">Nan Xue<script type="math/tex">^{1*}</script></a><a style="color: #0088CC">,</a>
-					<a href="https://cherubicxn.github.io/" style="color: #0088CC">Gui-Song Xia<script type="math/tex">^1</script></a><a style="color: #0088CC">,</a>,<br>
-					<a target="_blank" href="http://captain.whu.edu.cn/" style="color: #0088CC; font-style: italic"><script type="math/tex">^1</script>LIESMARS CAPTAIN, Wuhan University, Wuhan, China</a> 
+					<a href="http://captain.whu.edu.cn/wangfudong_En.html" style="color: #0088CC">Zhu-Cun Xue<script type="math/tex"></script></a><a style="color: #0088CC">,</a>
+					<a href="http://captain.whu.edu.cn/xia_En.html" style="color: #0088CC">Nan Xue<script type="math/tex"></script></a><a style="color: #0088CC">,</a>
+					<a href="https://cherubicxn.github.io/" style="color: #0088CC">Gui-Song Xia<script type="math/tex"></script></a><a style="color: #0088CC">,<br>
+					<a target="_blank" href="http://captain.whu.edu.cn/" style="color: #0088CC; font-style: italic"><script type="math/tex"></script>CAPTAIN, Wuhan University, Wuhan, China</a> 
 				</p>	 
 
 			
@@ -78,21 +78,26 @@
 					(3) rectify the input images via a proposed differentiablerectification layer.
 					To better train and evaluate the proposed model, we create a synthetic line-rich fisheye (SLF) dataset that containsdistortion parameters 
 					and well-annotated distorted straight lines of fisheye images. 
-					The proposed method enables us to simultaneously calibrate the geometric distortion parameters and rectify fisheye images.
-					Extensive experiments demonstrates that our model achievesthe state-of-the-art performance in both aspects of geometric correctness and image quality. 
-					Quantitatively, our proposed methodachieves state-of-the-art performance on several evaluation metrics. 
-					In particular, the average reprojection error between the correctedimages by LaRecNet and the ground-truth images is 0.33 pixels on the SLF dataset, 
-					and the images rectified by LaRecNet achieve thehighest peak signal-to-noise ratio (PSNR) and structure similarity index (SSIM).
+					The proposed method enables us to simultaneously calibrate the geometric distortion parameters and rectify fisheye images. 
+					Extensive experiments demonstrate that our model achieves the state-of-the-art performance in both aspects of geometric correctness and image quality on several evaluation
+                    metrics. In particular, the images rectified by LaRecNet achieve an average reprojection error of 0.33 pixels on the SLF dataset, and
+                    report the highest peak signal-to-noise ratio (PSNR) and structure similarity index (SSIM) compared with the groundtruth.
 					</p>
 				</td>
 			</tr>
 			
 			<tr>
-				<td colspan="2">
-				<div class="center">
-				<video width="1204" poster="video/LaRecNet.mp4" autoplay="autoplay" preload="none" controls="controls" muted><source src="video/LaRecNet.mp4" /></video>
-				</td>
-				</div>
+			<td>
+				<div class="left-align">
+				<p style="text-align:center">
+				<li><b>the network of LaRecNet, and the code is coming soon.</li></b>
+				<p>
+				<div align="center"><img src="img/allnet.png" width="600" /></div>
+				</div></td>
+				<td>
+				<div class="left-align">
+				<video width="600" poster="video/LaRecNet.mp4" autoplay="autoplay" preload="none" controls="controls" muted><source src="video/LaRecNet.mp4" /></video>
+				</div></td>
 			</tr>
 			
 			<tr>
@@ -108,7 +113,7 @@
 						Thanks to the recently released wireframe dataset 
 						which has the labelings of straight line and the large-scale 3D scenes SUNCG
 						which provides diverse semantic 3D scenes, 
-						we create a new synthetic line-rich  fisheye (SLF) dataset based on the 2D wireframes and 3D surface models of man-made environ-ments 
+						we create a new synthetic line-rich  fisheye (<b>SLF</b>) dataset based on the 2D wireframes and 3D surface models of man-made environ-ments 
 						for fisheye lens calibration and the image rectification.
 						The proposed SLF dataset has well-annotated 2D/3D line segments <script type="math/tex">L</script>
 						as well as the corresponding ground truth distortion parameters <script type="math/tex">K_{gt}</script>  for training and testing. 
@@ -203,7 +208,7 @@
 
 	        <tr>
 			    <td colspan="2"  >
-				    <li><b>Results on Synthetic Dataset</b> </li>
+				    <li><b>Results on SLF Dataset</b> </li>
 					<p class="text" style="text-align:left-align;">
 					 Qualitative comparison results of fisheye image rectification on <b>D-Wireframe</b> and <b>Fish-SUNCG</b>. 
 					 From left to right are the input fisheye images, rectification results ofthree state-of-the-art methods 
@@ -211,6 +216,8 @@
 					</p>
 				</td>
 			</tr>
+			
+			
 			<tr><td colspan="2" >
 			<table  align="center"; cellpadding="0";>	
 				<tr>	
@@ -305,128 +312,123 @@
 				</td>
 			</tr>
 			
+			
 			<tr>
-			    <td colspan="2">
-				    <li><b>Results on D-Wireframe</b> </li>
-					<div class="left-align">
-							<img src="img/fish6.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec6.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/fish14.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec14.gif" width="300" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div class="left-align">
-							<img src="img/fish8.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec8.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/fish9.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec9.gif" width="300" />
-					</div>
+			    <td colspan="2"  >
+				    <li><b>Results on <script type="math/tex">\text{SLF}_\text{wf}</script> </b> </li>
+					<p class="text" style="text-align:left-align;">
+					 The following image sequences is combined by a series of images with with continuously varying distortion parameters.
+					 First , we generate a collection of fisheye images with linear distortion parameters, 
+					 then the rectified images are generated by our proposed LaRecNet network,  
+					 and finally all the images are combined frame by frame respectively  to create the following image sequences.
+					</p>
 				</td>
 			</tr>
 			
-			<tr>
-			    <td colspan="2">
-				    <li><b>Results on Fish-SUNCG</b> </li>
-					<div class="left-align">
-							<img src="img/fish.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/fish4.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec4.gif" width="300" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div class="left-align">
-							<img src="img/fish1.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec1.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/fish2.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec2.gif" width="300" />
-					</div>
-				</td>
-			</tr>
 			
+			<tr><td colspan="2">
+			<table  align="center"; cellpadding="0";>
 				<tr>
-			    <td colspan="2">
-				    <li><b>Results on wild images</b> </li>
-					<div class="left-align">
-							<img src="img/fish15.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec15.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/real4.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/sys4.gif" width="300" />
-					</div>
+					<td><img src="img/fish6.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/rec6.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/fish14.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/rec14.gif" width="300" hspace="0" style="display:block" /></td>
+				</tr>
+				<tr>
+					<td><img src="img/fish8.gif" width="300" hspace="0" padding-bottom="30" /></td>
+					<td><img src="img/rec8.gif" width="300" hspace="0" padding-bottom="30"/></td>
+					<td><img src="img/fish9.gif" width="300" hspace="0" padding-bottom="30" /></td>
+					<td><img src="img/rec9.gif" width="300" hspace="0" padding-bottom="30"/></td>
+				</tr>
+			</table></td></tr>
+			
+			<tr>
+			    <td colspan="2"  >
+				    <li><b>Results on <script type="math/tex">\text{SLF}_\text{sun}</script> </b> </li>
+					<p class="text" style="text-align:left-align;">
+					The following fisheye videos is rendered by the designed camera's movement in rendering engine -- blender[4], 
+					and the corresponding videos is rectified by our proposed LaRecNet network. 
+					
+					</p>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<div class="left-align">
-							<img src="img/fish16.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/rec16.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/real5.gif" width="300" />
-					</div>
-					<div class="left-align">
-							<img src="img/sys5.gif" width="300" />
-					</div>
+					
+			<tr><td colspan="2">
+			<table  align="center"; cellpadding="0";>
+				<tr>
+					<td><img src="img/fish.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/rec.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/fish4.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/rec4.gif" width="300" hspace="0" style="display:block" /></td>
+				</tr>
+				<tr>
+					<td><img src="img/fish1.gif" width="300" hspace="0" padding-bottom="30" /></td>
+					<td><img src="img/rec1.gif" width="300" hspace="0" padding-bottom="30"/></td>
+					<td><img src="img/fish2.gif" width="300" hspace="0" padding-bottom="30" /></td>
+					<td><img src="img/rec2.gif" width="300" hspace="0" padding-bottom="30" /></td>
+				</tr>
+			</table></td></tr>
+		
+		    <tr>
+			    <td colspan="2"  >
+				    <li><b>Results on real videos </b> </li>
+					<p class="text" style="text-align:left-align;">
+					 Qualitative rectification comparison results on real fisheye video dataset[5], and the we
+					 use the calibration toolbox to estimate camera parameters from the video of the calibration pattern
+					 in this dataset as the groundtruth parameters.
+					</p>
 				</td>
 			</tr>
 			
+			
+			<tr><td colspan="2">
+			<table  align="center"; cellpadding="0";>
+				<tr>
+					<td><img src="img/fish15.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/rec15.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/real4.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/sys4.gif" width="300" hspace="0" style="display:block" /></td>
+				</tr>
+				<tr>
+					<td><img src="img/fish16.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/rec16.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/fish9.gif" width="300" hspace="0" style="display:block" /></td>
+					<td><img src="img/rec9.gif" width="300" hspace="0" style="display:block" /></td>
+				</tr>
+			</table></td></tr>
+			
+				
 			<tr>
 				<td colspan="2">
-					<h2 class="add-top-margin">Code(coming soon)</h2>
+					<h2 class="add-top-margin">References</h2>
 					<hr>
 				</td>
 			</tr>
 			
 			<tr>
 				<td colspan="2">
-					<div align="center"><img src="img/allnet.png" width="800" /></div>
+					<p class="text" style="text-align:justify;">
+					
+						
+						[1] F. Bukhari and M. N. Dailey, “Automatic radial distortion estimation from a single image,”
+						J MATH IMAGING VIS, vol. 45, no. 1, pp. 31–45, 2013.</br>
+						[2] M. Alem´an-Flores, L. Alvarez, L. Gomez, and D. Santana-Cedr´es, 
+						“Automatic lens distortion correction using one-parameter division 
+						models,” IPOL, vol. 4, pp. 327–343, 2014.</br>
+						[3] J. Rong, S. Huang, Z. Shang, and X. Ying, “Radial lens distortion 
+						correction using convolutional neural networks trained with synthesized 
+						images,” in ACCV, 2016.</br>
+						[4] Online Community, “Blender - a 3d modelling and rendering 
+						package,” Blender Foundation, Blender Institute Amsterdam, 2014.</br>
+						[5] A. Eichenseer and A. Kaup, “A data set providing synthetic and real-world fisheye video sequences,”
+						in ICASSP, 2016.
+						
+					</p>
 				</td>
 			</tr>
 			
 			
-
 	
-	<div class="footer">
-		<p class="block">&copy; 2020 by Zhu-Cun.Xue at CAPTAIN</p>
-	</div>
-
 	</table>
 </div>
 </body>
